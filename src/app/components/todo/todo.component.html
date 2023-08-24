@@ -1,0 +1,29 @@
+
+<div *ngIf="displayMessage()==false">
+    <h1 >Congratulations you finished your wholelist!!!!</h1>
+</div>
+
+<div *ngFor="let t of DoIt">
+  <tr>
+    <td>{{ t.Errand }} <button (click)="removeTask(t)">X</button></td>
+    <td *ngIf="t.Complete == true">Completed</td>
+  </tr>
+  <button *ngIf="t.Complete == false" (click)="CompletedTask(t.Errand)">
+    Click when completed
+  </button>
+</div>
+
+<!-- FORMS
+-go to app.module.ts
+-imports array
+-add FormsModule
+import { FormsModule } from '@angular/forms';
+
+-create a variable
+-create input on html
+--add [(ngModel)]="newVariableName" -->
+<input type="text" [(ngModel)]="newTask.Errand" />
+<button (click)="addTask()">Add Task</button>
+
+
+
