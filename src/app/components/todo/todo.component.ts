@@ -12,7 +12,6 @@ export class TodoComponent {
 
 
 
-
   DoIt:Task[] =[
     {
     Errand: "Do the laundry",
@@ -94,7 +93,7 @@ export class TodoComponent {
 //     return false; 
 //   }
 //  };
-displayMessage():boolean{
+Congratulations():boolean{
   let result:boolean = false;
   this.DoIt.forEach((t:Task) => {
     if(t.Complete == false){
@@ -105,5 +104,13 @@ displayMessage():boolean{
     
   });
   return result;
+}
+
+serch:string ='';
+taskList:Task[] = [];
+
+searchString():void{
+  this.taskList=this.DoIt.filter((b)=>b.Errand.includes(this.serch));
+  console.log(this.taskList);
 }
 }

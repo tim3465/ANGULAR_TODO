@@ -1,17 +1,63 @@
-
-<div *ngIf="displayMessage()==false">
-    <h1 >Congratulations you finished your wholelist!!!!</h1>
+<div *ngIf="Congratulations() == false">
+  <h1>Congratulations you finished your wholelist!!!!</h1>
 </div>
 
-<div *ngFor="let t of DoIt">
+<div *ngFor="let b of DoIt">
   <tr>
-    <td>{{ t.Errand }} <button (click)="removeTask(t)">X</button></td>
-    <td *ngIf="t.Complete == true">Completed</td>
+    <td *ngIf="b.Complete == true">
+      Completed
+    </td>
+    <td>
+      <button *ngIf="b.Complete == false" (click)="CompletedTask(b.Errand)">
+        Click when complete
+      </button>
+    </td>
+    <td>
+      <s *ngIf="b.Complete == true">{{ b.Errand }}</s>
+      <p *ngIf="b.Complete == false">{{ b.Errand }}</p>
+    </td>
+    
+    <td>
+      <button (click)="removeTask(b)">X</button>
+    </td>
   </tr>
-  <button *ngIf="t.Complete == false" (click)="CompletedTask(t.Errand)">
-    Click when completed
-  </button>
 </div>
+
+
+<p>
+  <input type="text" [(ngModel)]="newTask.Errand" />
+  <button (click)="addTask()">Add Task</button>
+</p>
+
+<p>
+  <input type="text" [(ngModel)]="serch" />
+  <button (click)="searchString()">Serch Task</button>
+</p>
+
+<div *ngFor="let t of taskList">
+  <tr>
+    <td *ngIf="t.Complete == true">
+      Completed
+    </td>
+    <td>
+      <button *ngIf="t.Complete == false" (click)="CompletedTask(t.Errand)">
+        Click when completed
+      </button>
+    </td>
+    <td>
+      <s *ngIf="t.Complete == true">{{ t.Errand }}</s>
+      <p *ngIf="t.Complete == false">{{ t.Errand }}</p>
+    </td>
+    
+    <td>
+      <button (click)="removeTask(t)">X</button>
+    </td>
+  </tr>
+</div>
+
+
+
+
 
 <!-- FORMS
 -go to app.module.ts
@@ -22,20 +68,3 @@ import { FormsModule } from '@angular/forms';
 -create a variable
 -create input on html
 --add [(ngModel)]="newVariableName" -->
-<input type="text" [(ngModel)]="newTask.Errand" />
-<button (click)="addTask()">Add Task</button>
-
-
-
-<!-- <tr *ngFor="let a of allTasks">
-    <td class="tableData">{{ a.name }}
-        <button (click)="removeTask(a)">Delete</button>
-    </td>
-    <td class="tableData" *ngIf="a.completed == true">All Done!!!!
-        <button (click)="completeTask(a)">x</button>
-    </td>
-    <td class="tableData" *ngIf="a.completed == false">Get To work 
-        <button (click)="completeTask(a)">x</button>
-    </td>
-    
-  </tr> -->
